@@ -59,6 +59,7 @@ describe('Basic user flow for Website', () => {
     let innerText = await button.getProperty('innerText');
     let text = await innerText.jsonValue();
     expect(text).toBe('Remove from Cart');
+    await button.click();
   }, 2500);
     
   // Check to make sure that after clicking "Add to Cart" on every <product-item> that the Cart
@@ -70,7 +71,7 @@ describe('Basic user flow for Website', () => {
     // get the shadowRoot and query select the button inside, and click on it.
     // Check to see if the innerText of #cart-count is 20
     const prodItems = await page.$$('product-item');
-    for(var i = 0; i < prodItems.length; i++) {
+    for(let i = 0; i < prodItems.length; i++) {
       let product = prodItems[i];
       const shadow = await product.getProperty('shadowRoot');
       const button = await shadow.$('button');
@@ -113,7 +114,7 @@ describe('Basic user flow for Website', () => {
     let cart = await page.evaluate(() => {
       return localStorage.getItem('cart');
     });
-    expect(cart).toBe([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]);
+    expect(cart).toBe("[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]");
   });
 
   // Checking to make sure that if you remove all of the items from the cart that the cart
@@ -153,7 +154,6 @@ describe('Basic user flow for Website', () => {
       let innerText = await button.getProperty('innerText');
       let text = await innerText.jsonValue();
       expect(text).toBe('Add to Cart');
-      await button.click();
     }
     let cartCount = await page.$('#cart-count');
     let innerText = await cartCount.getProperty('innerText');
