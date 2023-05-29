@@ -6,5 +6,5 @@ Victor Kim and Trisha Tong
       This is because puppetier is made to perform actions acting as the user while unit tests simply check if the output of the function in some specific                  circumstance is as expected which might not always be possible with interactions.
 3. Yes we can use unit testing for message feature. 
        Since if one message goes through then all messages will also go through the same way. We can expect that testing the feature once, unless we want to see some         corner case covered, should be sufficient.
-4.No we cannot
+4. No we cannot
       Since unit testing cannot perform actions live, we cannot test if typing more would prevent the user from making a longer message.
